@@ -1,0 +1,18 @@
+require "user.options"
+require "user.plugins"
+require "user.keymaps"
+
+require "user.alpha"
+require "user.cmp"
+require "user.comment"
+require "user.autopair"
+require "user.neoclip"
+require "user.lualine"
+require "user.toggleterm"
+require "user.vimsneak"
+require "user.lsp"
+require "user.telescope"
+require "user.telescope-emoji"
+require "user.treesitter"
+require "user.nvim-tree"
+
