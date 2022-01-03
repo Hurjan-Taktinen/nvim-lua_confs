@@ -55,7 +55,7 @@ return packer.startup(function(use)
     use "phanviet/vim-monokai-pro"
     use "rose-pine/neovim"
     use "tomasiser/vim-code-dark"
-    use "Hurjan-Taktinen/vim-code-dark"
+    -- use "Hurjan-Taktinen/vim-code-dark"
     use "tomasr/molokai"
     use "mhartington/oceanic-next"
 
@@ -70,6 +70,8 @@ return packer.startup(function(use)
 
     -- Git integration
     use "tpope/vim-fugitive"
+    use "tpope/vim-repeat"
+    use "lewis6991/gitsigns.nvim"
 
     -- Completion
     use "hrsh7th/cmp-nvim-lsp"
@@ -80,6 +82,9 @@ return packer.startup(function(use)
     use "saadparwaiz1/cmp_luasnip" -- snippet completions
     use "hrsh7th/cmp-emoji"
     use "hrsh7th/cmp-nvim-lua"
+
+    --- TESTING
+    use "hrsh7th/cmp-nvim-lsp-signature-help"
 
     -- Snippets
     use "L3MON4D3/LuaSnip" --snippet engine
