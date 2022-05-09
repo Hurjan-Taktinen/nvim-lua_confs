@@ -13,7 +13,11 @@ local has_words_before = function()
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
-require("luasnip/loaders/from_vscode").lazy_load()
+require("luasnip/loaders/from_vscode").lazy_load({
+    paths = {
+        "~/.local/share/nvim/site/pack/packer/start/friendly-snippets",
+        "~/.config/nvim/lua/user/my_snippets" }}
+)
 
 local kind_icons = {
     Text = " ",
@@ -69,12 +73,16 @@ cmp.setup({
         -- ['<Tab>'] = cmp.mapping.confirm({ select = true }),
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
+                print('AWAW 1')
                 cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
+                print('AWAW 2')
                 luasnip.expand_or_jump()
             elseif has_words_before() then
+                print('AWAW 3')
                 cmp.complete()
             else
+                print('AWAW 4')
                 fallback()
             end
         end, { "i", "s" }),
@@ -89,14 +97,40 @@ cmp.setup({
             end
         end, { "i", "s" }),
     },
+     -- ORIGINAL ORDER
+      -- comparators = {
+      --   cmp.config.compare.offset,
+      --   cmp.config.compare.exact,
+      --   cmp.config.compare.score,
+      --   cmp.config.compare.recently_used,
+      --   cmp.config.compare.kind,
+      --   cmp.config.compare.sort_text,
+      --   cmp.config.compare.length,
+      --   cmp.config.compare.order,
+      -- },
+
+    sorting = {
+      priority_weight = 2,
+      comparators = {
+        cmp.config.compare.score,
+        cmp.config.compare.offset,
+        -- cmp.config.compare.kind,
+        -- cmp.config.compare.exact,
+        -- cmp.config.compare.recently_used,
+        -- cmp.config.compare.sort_text,
+        -- cmp.config.compare.length,
+        -- cmp.config.compare.order,
+      },
+    },
+
     sources = cmp.config.sources({
-        { name = "buffer" },
-        { name = "nvim_lsp" },
-        { name = "nvim_lsp_signature_help" },
-        { name = "luasnip" },
-        { name = "nvim_lua" },
-        { name = "cmdline" },
+        { name = "nvim_lsp", priority = 2 },
+        { name = "nvim_lsp_signature_help", priority = 2 },
+        { name = "luasnip", priority = 2 },
+        { name = "buffer", priority = 1 },
+        -- { name = "nvim_lua" },
         { name = "path" },
+        { name = "cmdline" },
         { name = "emoji" },
     }),
     formatting = {

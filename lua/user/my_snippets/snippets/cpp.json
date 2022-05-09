@@ -1,0 +1,14 @@
+{
+  "WARNING": {
+    "prefix": "WARNING",
+    "body": ["WARNING(_log, \"$1\");"]
+  },
+  "DEBUG": {
+    "prefix": "DEBUG",
+    "body": ["DEBUG(_log, \"$1\");"]
+  },
+  "INFO": {
+    "prefix": "INFO",
+    "body": ["INFO(_log, \"$1\");"]
+  }
+}
