@@ -108,7 +108,7 @@ return packer.startup(function(use)
     use("xiyaowong/telescope-emoji.nvim")
 
     use("nvim-telescope/telescope-media-files.nvim")
-    use("nvim-telescope/telescope-live-grep-raw.nvim")
+    use("nvim-telescope/telescope-live-grep-args.nvim")
 
     -- Greeter
     use("kyazdani42/nvim-web-devicons")

@@ -20,7 +20,7 @@ Get_visual_text = function()
 	return string.sub(Current_line, Start_pos[2]+1, End_pos[2]+1)
 end
 
-Live_grep_raw = function(mode)
+live_grep_args = function(mode)
 	opts = {}
 	opts.prompt_title = 'Live Grep Raw (-t[ty] include, -T exclude -g"[!] [glob])"'
 	if not opts.default_text then
@@ -31,7 +31,7 @@ Live_grep_raw = function(mode)
 		end
 	end
 
-	require('telescope').extensions.live_grep_raw.live_grep_raw(opts)
+	require('telescope').extensions.live_grep_args.live_grep_args(opts)
 end
 
 
@@ -70,7 +70,7 @@ keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>", opts)
 
 -- Clangd
 keymap("n", "gp", "<cmd> :ClangdSwitchSourceHeader<CR>", opts)
-keymap("n", "g-", "<cmd> vs % <bar> :ClangdSwitchSourceHeader<CR>", opts)
+keymap("n", "gt", "<cmd> vs % <bar> :ClangdSwitchSourceHeader<CR>", opts)
 
 -- Tmux navigation
 keymap("n", "<M-h>", ":TmuxNavigateLeft<CR>", opts)
@@ -101,8 +101,8 @@ keymap("n", "fa", "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_fi
 keymap("n", "fw", "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>", opts)
 keymap("n", "fs", "<cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>", opts)
 keymap("n", "fr", "<cmd>lua require('telescope.builtin').lsp_references()<cr>", opts)
-keymap("n", "fn", "<cmd>lua require('telescope').extensions.live_grep_raw.live_grep_raw()<cr>", opts)
-keymap("v", "fn", '<Esc><cmd>lua Live_grep_raw("v")<cr>', opts)
+keymap("n", "fn", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>", opts)
+keymap("v", "fn", '<Esc><cmd>lua live_grep_args("v")<cr>', opts)
 -- keymap("n", "fd", "<cmd>lua require('telescope.builtin').lsp_diagnostics()<cr>", opts)
 -- keymap("n", "fi", "<cmd>lua require('telescope.builtin').lsp_implementations()<cr>", opts)
 keymap("n", "fk", "<cmd>lua require('telescope.builtin').keymaps()<cr>", opts)
@@ -159,7 +159,7 @@ keymap("n", "<leader>8", ":BufferLineGoToBuffer 8<CR>", opts)
 keymap("n", "<leader>9", ":BufferLineGoToBuffer 9<CR>", opts)
 
 -- Various
-keymap("n", "<leader>-", "<cmd>nohlsearch<cr>", opts)
+keymap("n", "<leader>/", "<cmd>nohlsearch<cr>", opts)
 keymap("n", "<leader>l", ":set list!<CR>", opts)
 -- keymap("i", "jk", "<ESC>", opts)
 
