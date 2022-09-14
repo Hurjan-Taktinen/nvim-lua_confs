@@ -34,7 +34,6 @@ live_grep_args = function(mode)
 	require('telescope').extensions.live_grep_args.live_grep_args(opts)
 end
 
-
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -49,6 +48,12 @@ keymap("", "<S-q>", "<Nop>", opts)
 -- Map space as leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+
+-- Persistent paste remap
+keymap("n", "<leader>p", "\"_dP", opts)
+
+keymap("n", "<C-d>", "<C-d>zz", opts)
+keymap("n", "<C-u>", "<C-u>zz", opts)
 
 keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
 keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
@@ -159,7 +164,7 @@ keymap("n", "<leader>8", ":BufferLineGoToBuffer 8<CR>", opts)
 keymap("n", "<leader>9", ":BufferLineGoToBuffer 9<CR>", opts)
 
 -- Various
-keymap("n", "<leader>/", "<cmd>nohlsearch<cr>", opts)
+keymap("n", "<leader>-", "<cmd>nohlsearch<cr>", opts)
 keymap("n", "<leader>l", ":set list!<CR>", opts)
 -- keymap("i", "jk", "<ESC>", opts)
 
