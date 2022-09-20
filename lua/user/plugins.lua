@@ -68,6 +68,7 @@ return packer.startup(function(use)
         run = ":TSUpdate",
     })
     use("nvim-treesitter/playground")
+    use("nvim-treesitter/nvim-treesitter-context")
     use("jose-elias-alvarez/null-ls.nvim")
 
     -- Git integration

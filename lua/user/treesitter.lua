@@ -3,6 +3,15 @@ if not status_ok then
     return
 end
 
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.cpp = {
+    install_info = {
+        url = "~/dev/git/tree-sitter-cpp", -- local path or git repo
+        files = {"src/parser.c", "src/scanner.cc"},
+    },
+    -- requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
+}
+
 configs.setup({
     ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
@@ -28,3 +37,5 @@ configs.setup({
         enable = true,
     },
 })
+
+require'treesitter-context'.setup{}
