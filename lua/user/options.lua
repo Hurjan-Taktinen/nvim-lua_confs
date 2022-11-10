@@ -69,3 +69,8 @@ end
 
 vim.cmd("set listchars=tab:▸\\ ,eol:¬,space:·,nbsp:␣,trail:~")
 vim.cmd([[ colorscheme codedark ]])
+
+vim.cmd([[
+        au BufWritePost,FileWritePost *.uml !plantuml <afile>
+]])
+

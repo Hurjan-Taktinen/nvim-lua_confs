@@ -46,6 +46,7 @@ return packer.startup(function(use)
     -- use "easymotion/vim-easymotion"
     use("justinmk/vim-sneak") -- Relocate cursor quickly within visible buffer
     use("danilamihailov/beacon.nvim") -- Find cursor after jump
+    use("ThePrimeagen/harpoon")
 
     -- Colorschemes
     use("catppuccin/nvim")

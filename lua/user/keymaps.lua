@@ -2,36 +2,36 @@ local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
 Escape_rg_text = function(text)
-	text = text:gsub('%(', '\\%(')
-	text = text:gsub('%)', '\\%)')
-	text = text:gsub('%[', '\\%[')
-	text = text:gsub('%]', '\\%]')
-	text = text:gsub('"', '\\"')
-	text = text:gsub('-', '\\-')
+    text = text:gsub('%(', '\\%(')
+    text = text:gsub('%)', '\\%)')
+    text = text:gsub('%[', '\\%[')
+    text = text:gsub('%]', '\\%]')
+    text = text:gsub('"', '\\"')
+    text = text:gsub('-', '\\-')
 
-	return text
+    return text
 end
 
 Get_visual_text = function()
-	local Current_line = vim.api.nvim_get_current_line()
-	local Start_pos = vim.api.nvim_buf_get_mark(0, "<")
-	local End_pos = vim.api.nvim_buf_get_mark(0, ">")
+    local Current_line = vim.api.nvim_get_current_line()
+    local Start_pos = vim.api.nvim_buf_get_mark(0, "<")
+    local End_pos = vim.api.nvim_buf_get_mark(0, ">")
 
-	return string.sub(Current_line, Start_pos[2]+1, End_pos[2]+1)
+    return string.sub(Current_line, Start_pos[2] + 1, End_pos[2] + 1)
 end
 
 live_grep_args = function(mode)
-	opts = {}
-	opts.prompt_title = 'Live Grep Raw (-t[ty] include, -T exclude -g"[!] [glob])"'
-	if not opts.default_text then
-		if mode == 'v' then
-			opts.default_text = '"' .. Escape_rg_text(Get_visual_text()) .. '"'
-		else
-			opts.default_text = '"'
-		end
-	end
+    opts = {}
+    opts.prompt_title = 'Live Grep Raw (-t[ty] include, -T exclude -g"[!] [glob])"'
+    if not opts.default_text then
+        if mode == 'v' then
+            opts.default_text = '"' .. Escape_rg_text(Get_visual_text()) .. '"'
+        else
+            opts.default_text = '"'
+        end
+    end
 
-	require('telescope').extensions.live_grep_args.live_grep_args(opts)
+    require('telescope').extensions.live_grep_args.live_grep_args(opts)
 end
 
 -- Modes
@@ -71,7 +71,7 @@ keymap("n", "<leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 keymap("n", "{", "<cmd>lua vim.diagnostic.goto_prev({ border = 'rounded' })<CR>", opts)
 keymap("n", "}", "<cmd>lua vim.diagnostic.goto_next({ border = 'rounded' })<CR>", opts)
 keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>", opts)
+keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
 
 -- Clangd
 keymap("n", "gp", "<cmd> :ClangdSwitchSourceHeader<CR>", opts)
@@ -148,6 +148,9 @@ keymap("n", "N", "N:Beacon<cr>", opts)
 keymap("n", "*", "*:Beacon<cr>", opts)
 keymap("n", "#", "#:Beacon<cr>", opts)
 
+-- Harpoon
+-- keymap("n", "<leader>ba", "<cmd> lua require('harpoon.mark'.add_file())", opts)
+
 -- Bufferline
 keymap("n", "<S-h>", ":BufferLineCyclePrev<CR>", opts)
 keymap("n", "<S-l>", ":BufferLineCycleNext<CR>", opts)
@@ -173,7 +176,7 @@ keymap("n", "<F5>", "<cmd>Telescope commands<CR>", opts)
 keymap(
     "n",
     "<C-e>",
-    "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+    "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
     opts
 )
 keymap("n", "<F8>", "<cmd>TSPlaygroundToggle<cr>", opts)

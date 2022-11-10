@@ -7,7 +7,7 @@ local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.cpp = {
     install_info = {
         url = "~/dev/git/tree-sitter-cpp", -- local path or git repo
-        files = {"src/parser.c", "src/scanner.cc"},
+        files = { "src/parser.c", "src/scanner.cc" },
     },
     -- requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
 }
@@ -24,7 +24,7 @@ configs.setup({
     autopairs = {
         enable = true,
     },
-    indent = { enable = true, disable = { "yaml", "python", "c", "cpp"} },
+    indent = { enable = true, disable = { "yaml", "python", "c", "cpp" } },
     context_commentstring = {
         enable = true,
         enable_autocmd = false,
@@ -38,4 +38,4 @@ configs.setup({
     },
 })
 
-require'treesitter-context'.setup{}
+require 'treesitter-context'.setup {}
